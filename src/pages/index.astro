@@ -1,0 +1,137 @@
+---
+// Lit web-component scripts are loaded client-side via <script> tags below.
+// Importing them in the frontmatter causes Astro to attempt SSR, which fails
+// because Node.js cannot parse TypeScript decorators without a transpiler.
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Aabech Consulting – Independent software consultant with 30+ years experience across telecom, energy, HR and e-commerce."
+    />
+    <title>Aabech Consulting</title>
+    <link rel="icon" type="image/svg+xml" href="/aabech-no/favicon.svg" />
+    <script>
+      import '../components/ac-logo.ts';
+      import '../components/consulting-hero.ts';
+      import '../components/highlights-section.ts';
+      import '../components/contact-section.ts';
+    </script>
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        font-family: var(--font-sans);
+        background: #0d1b35;
+        color: #f1f5f9;
+        line-height: 1.6;
+      }
+
+      /* ── nav ── */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 27, 53, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        padding: 0.75rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .nav-brand ac-logo {
+        --ac-color: white;
+        --ac-size: 36px;
+      }
+
+      .nav-brand-name {
+        font-weight: 700;
+        font-size: 1rem;
+        letter-spacing: -0.01em;
+        white-space: nowrap;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: #94a3b8;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover { color: #f1f5f9; }
+
+      /* ── footer ── */
+      footer {
+        background: #07111f;
+        color: #475569;
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.85rem;
+      }
+
+      footer ac-logo {
+        --ac-color: #334155;
+        --ac-size: 28px;
+        display: inline-block;
+        margin-bottom: 0.75rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── Navigation ── -->
+    <nav>
+      <a class="nav-brand" href="#top" aria-label="Aabech Consulting – home">
+        <ac-logo></ac-logo>
+        <span class="nav-brand-name">Aabech Consulting</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#highlights">Expertise</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- ── Hero ── -->
+    <consulting-hero id="top"></consulting-hero>
+
+    <!-- ── Highlights ── -->
+    <highlights-section></highlights-section>
+
+    <!-- ── Contact ── -->
+    <contact-section></contact-section>
+
+    <!-- ── Footer ── -->
+    <footer>
+      <ac-logo aria-hidden="true"></ac-logo>
+      <p>&copy; {new Date().getFullYear()} Aabech Consulting · Lars Erik Aabech</p>
+    </footer>
+  </body>
+</html>
