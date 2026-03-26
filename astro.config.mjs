@@ -6,4 +6,7 @@ export default defineConfig({
   base: '/aabech-no',
   integrations: [lit()],
   output: 'static',
+  build: {
+    inlineStylesheets: 'always',
+  },
 });
