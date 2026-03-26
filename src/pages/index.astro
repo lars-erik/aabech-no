@@ -1,7 +1,6 @@
 ---
-// Lit web-component scripts are loaded client-side via <script> tags below.
-// Importing them in the frontmatter causes Astro to attempt SSR, which fails
-// because Node.js cannot parse TypeScript decorators without a transpiler.
+// ac-logo is a Lit web component — loaded client-side for the animated hero logo.
+// All other content is static Astro HTML so it renders without JavaScript.
 ---
 
 <!doctype html>
@@ -15,26 +14,33 @@
     />
     <title>Aabech Consulting</title>
     <link rel="icon" type="image/svg+xml" href="/aabech-no/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script>
       import '../components/ac-logo.ts';
-      import '../components/consulting-hero.ts';
-      import '../components/highlights-section.ts';
-      import '../components/contact-section.ts';
     </script>
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
       :root {
-        --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --font: 'Inter', system-ui, -apple-system, sans-serif;
+        --bg:        #0b1220;
+        --surface:   #111827;
+        --text:      #f1f5f9;
+        --muted:     #94a3b8;
+        --accent:    #38bdf8;
+        --border:    rgba(255, 255, 255, 0.08);
       }
 
       html { scroll-behavior: smooth; }
 
       body {
-        font-family: var(--font-sans);
-        background: #0d1b35;
-        color: #f1f5f9;
-        line-height: 1.6;
+        font-family: var(--font);
+        background: var(--bg);
+        color: var(--text);
+        font-size: 1.125rem;
+        line-height: 1.7;
       }
 
       /* ── nav ── */
@@ -42,11 +48,11 @@
         position: sticky;
         top: 0;
         z-index: 100;
-        background: rgba(13, 27, 53, 0.85);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255,255,255,0.07);
-        padding: 0.75rem 2rem;
+        background: rgba(11, 18, 32, 0.92);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 2rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -63,7 +69,7 @@
 
       .nav-brand ac-logo {
         --ac-color: white;
-        --ac-size: 36px;
+        --ac-size: 32px;
       }
 
       .nav-brand-name {
@@ -75,38 +81,229 @@
 
       .nav-links {
         display: flex;
-        gap: 1.5rem;
+        gap: 2rem;
         list-style: none;
       }
 
       .nav-links a {
-        color: #94a3b8;
+        color: var(--muted);
         text-decoration: none;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         font-weight: 500;
-        transition: color 0.2s;
+        transition: color 0.15s;
+      }
+      .nav-links a:hover { color: var(--text); }
+
+      /* ── hero ── */
+      .hero {
+        background: var(--bg);
+        padding: 6rem 2rem 5rem;
+        text-align: center;
       }
 
-      .nav-links a:hover { color: #f1f5f9; }
+      .hero-inner {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      /* animated SVG logo in hero */
+      .hero-logo {
+        display: block;
+        width: 96px;
+        height: 96px;
+        margin: 0 auto 2.5rem;
+        overflow: visible;
+      }
+
+      .ac-line {
+        fill: none;
+        stroke: white;
+        stroke-width: 9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .ac-dot {
+        fill: white;
+        fill-rule: evenodd;
+      }
+
+      .line-left-leg   { stroke-dasharray: 171; stroke-dashoffset: 171; animation: ac-draw 0.55s ease-out forwards 0.05s; }
+      .line-spine      { stroke-dasharray: 161; stroke-dashoffset: 161; animation: ac-draw 0.50s ease-out forwards 0.15s; }
+      .line-top-arm    { stroke-dasharray:  82; stroke-dashoffset:  82; animation: ac-draw 0.30s ease-out forwards 0.28s; }
+      .line-crossbar   { stroke-dasharray:  37; stroke-dashoffset:  37; animation: ac-draw 0.20s ease-out forwards 0.55s; }
+      .line-bottom-arm { stroke-dasharray:  57; stroke-dashoffset:  57; animation: ac-draw 0.25s ease-out forwards 0.48s; }
+
+      .ac-dot { opacity: 0; animation: ac-appear 0.2s ease-out forwards; }
+      .dot-apex { animation-delay: 0.72s; }
+      .dot-bl   { animation-delay: 0.62s; }
+      .dot-br   { animation-delay: 0.76s; }
+      .dot-ct   { animation-delay: 0.60s; }
+      .dot-cb   { animation-delay: 0.75s; }
+
+      @keyframes ac-draw   { to { stroke-dashoffset: 0; } }
+      @keyframes ac-appear { to { opacity: 1; } }
+
+      .hero h1 {
+        font-size: clamp(2.4rem, 6vw, 4rem);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        margin: 0 0 1.25rem;
+        color: #f8fafc;
+      }
+
+      .hero .tagline {
+        font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+        color: var(--muted);
+        max-width: 580px;
+        margin: 0 auto 3rem;
+        line-height: 1.7;
+        font-weight: 400;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: var(--accent);
+        color: #0b1220;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.05rem;
+        padding: 0.85rem 2.2rem;
+        border-radius: 0.5rem;
+        transition: background 0.15s, transform 0.15s;
+      }
+      .btn-primary:hover { background: #7dd3fc; transform: translateY(-2px); }
+
+      /* ── highlights ── */
+      .highlights {
+        background: var(--surface);
+        padding: 6rem 2rem;
+      }
+
+      .section-header {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto 4rem;
+      }
+
+      .section-header h2 {
+        font-size: clamp(1.9rem, 4vw, 2.75rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.15;
+        margin: 0 0 1rem;
+        color: #f8fafc;
+      }
+
+      .section-header p {
+        font-size: 1.1rem;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        max-width: 1080px;
+        margin: 0 auto;
+      }
+
+      .card {
+        background: #1e293b;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 2rem 2rem 2.25rem;
+        transition: border-color 0.2s;
+      }
+      .card:hover { border-color: rgba(56, 189, 248, 0.35); }
+
+      .card-icon {
+        font-size: 2rem;
+        line-height: 1;
+        margin-bottom: 1.25rem;
+      }
+
+      .card h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #f1f5f9;
+        letter-spacing: -0.01em;
+        margin: 0 0 0.75rem;
+      }
+
+      .card p {
+        font-size: 1rem;
+        color: var(--muted);
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      /* ── contact ── */
+      .contact {
+        background: var(--bg);
+        border-top: 1px solid var(--border);
+        padding: 6rem 2rem;
+        text-align: center;
+      }
+
+      .contact-inner {
+        max-width: 560px;
+        margin: 0 auto;
+      }
+
+      .contact h2 {
+        font-size: clamp(1.9rem, 4vw, 2.75rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.15;
+        margin: 0 0 1.25rem;
+        color: #f8fafc;
+      }
+
+      .contact p {
+        font-size: 1.1rem;
+        color: var(--muted);
+        line-height: 1.7;
+        margin: 0 0 2.5rem;
+      }
+
+      .btn-linkedin {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: #0077b5;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.05rem;
+        padding: 0.85rem 2.2rem;
+        border-radius: 0.5rem;
+        transition: background 0.15s, transform 0.15s;
+      }
+      .btn-linkedin:hover { background: #005885; transform: translateY(-2px); }
 
       /* ── footer ── */
       footer {
-        background: #07111f;
+        background: #070d18;
         color: #475569;
         text-align: center;
-        padding: 2rem;
-        font-size: 0.85rem;
+        padding: 2.5rem 2rem;
+        font-size: 0.9rem;
       }
 
       footer ac-logo {
         --ac-color: #334155;
-        --ac-size: 28px;
+        --ac-size: 26px;
         display: inline-block;
         margin-bottom: 0.75rem;
       }
     </style>
   </head>
   <body>
+
     <!-- ── Navigation ── -->
     <nav>
       <a class="nav-brand" href="#top" aria-label="Aabech Consulting – home">
@@ -120,18 +317,104 @@
     </nav>
 
     <!-- ── Hero ── -->
-    <consulting-hero id="top"></consulting-hero>
+    <section class="hero" id="top">
+      <div class="hero-inner">
+
+        <!-- Inline animated SVG logo — renders without JavaScript -->
+        <svg class="hero-logo" viewBox="0 0 260 220" role="img" aria-label="AC – Aabech Consulting">
+          <title>AC – Aabech Consulting</title>
+          <line class="ac-line line-left-leg"   x1="48"  y1="182" x2="112" y2="22"  />
+          <line class="ac-line line-spine"       x1="112" y1="22"  x2="122" y2="182" />
+          <line class="ac-line line-crossbar"    x1="77"  y1="110" x2="118" y2="110" />
+          <line class="ac-line line-top-arm"     x1="114" y1="48"  x2="195" y2="48"  />
+          <line class="ac-line line-bottom-arm"  x1="120" y1="154" x2="178" y2="154" />
+          <!-- terminal dots (transparent-hole donuts via even-odd fill-rule) -->
+          <path class="ac-dot dot-apex" d="M112,14 A8,8 0 1,1 111.999,14 Z M112,18.5 A3.5,3.5 0 1,0 111.999,18.5 Z" />
+          <path class="ac-dot dot-bl"   d="M48,174 A8,8 0 1,1 47.999,174 Z M48,178.5 A3.5,3.5 0 1,0 47.999,178.5 Z" />
+          <path class="ac-dot dot-br"   d="M122,174 A8,8 0 1,1 121.999,174 Z M122,178.5 A3.5,3.5 0 1,0 121.999,178.5 Z" />
+          <path class="ac-dot dot-ct"   d="M195,40 A8,8 0 1,1 194.999,40 Z M195,44.5 A3.5,3.5 0 1,0 194.999,44.5 Z" />
+          <path class="ac-dot dot-cb"   d="M178,146 A8,8 0 1,1 177.999,146 Z M178,150.5 A3.5,3.5 0 1,0 177.999,150.5 Z" />
+        </svg>
+
+        <h1>Aabech Consulting</h1>
+        <p class="tagline">
+          Independent software consultant with 30+ years of hands-on experience
+          across telecom, energy, HR and e-commerce.
+        </p>
+        <a
+          href="https://www.linkedin.com/in/aabech?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          Connect on LinkedIn
+        </a>
+      </div>
+    </section>
 
     <!-- ── Highlights ── -->
-    <highlights-section></highlights-section>
+    <section class="highlights" id="highlights">
+      <div class="section-header">
+        <h2>What I bring</h2>
+        <p>
+          30 years of building software at scale across industries — always with quality,
+          maintainability and delivery speed in mind.
+        </p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">🏭</div>
+          <h3>Multi-Industry Expertise</h3>
+          <p>Delivered enterprise software across telecom, energy, HR and e-commerce sectors — bringing cross-domain insight that drives robust, adaptable designs.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔗</div>
+          <h3>CMS · CRM · Integration · BI</h3>
+          <p>Deep experience building and integrating content management, customer relationship, business intelligence and enterprise integration platforms.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">✅</div>
+          <h3>Automated Testing &amp; TDD/BDD</h3>
+          <p>Advocate for test-driven and behaviour-driven development. Writing tests first is the fastest path to clean, confident, defect-free software.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚙️</div>
+          <h3>Agile Architecture</h3>
+          <p>Architecture that evolves with the product. Lean design decisions, evolutionary refactoring and continuous feedback loops keep systems healthy over time.</p>
+        </div>
+      </div>
+    </section>
 
     <!-- ── Contact ── -->
-    <contact-section></contact-section>
+    <section class="contact" id="contact">
+      <div class="contact-inner">
+        <h2>Let's work together</h2>
+        <p>
+          Looking for an experienced independent consultant? Reach out on LinkedIn and
+          let's start a conversation.
+        </p>
+        <a
+          href="https://www.linkedin.com/in/aabech?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-linkedin"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          View LinkedIn Profile
+        </a>
+      </div>
+    </section>
 
     <!-- ── Footer ── -->
     <footer>
       <ac-logo aria-hidden="true"></ac-logo>
       <p>&copy; {new Date().getFullYear()} Aabech Consulting · Lars Erik Aabech</p>
     </footer>
+
   </body>
 </html>

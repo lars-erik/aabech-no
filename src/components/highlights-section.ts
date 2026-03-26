@@ -42,79 +42,74 @@ export class HighlightsSection extends LitElement {
     }
 
     section {
-      background: #f8fafc;
-      padding: 5rem 2rem;
+      background: #111827;
+      padding: 6rem 2rem;
     }
 
     .section-header {
       text-align: center;
-      max-width: 640px;
-      margin: 0 auto 3.5rem;
-    }
-
-    .section-eyebrow {
-      display: inline-block;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #0ea5e9;
-      margin-bottom: 0.75rem;
+      max-width: 600px;
+      margin: 0 auto 4rem;
     }
 
     h2 {
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: clamp(1.9rem, 4vw, 2.75rem);
       font-weight: 800;
-      color: #0f172a;
+      color: #f8fafc;
       margin: 0 0 1rem;
-      line-height: 1.2;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
     }
 
     .section-sub {
-      font-size: 1.05rem;
-      color: #64748b;
-      line-height: 1.65;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 1.1rem;
+      color: #94a3b8;
+      line-height: 1.7;
       margin: 0;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.75rem;
-      max-width: 1100px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1080px;
       margin: 0 auto;
     }
 
     .card {
-      background: #fff;
-      border: 1px solid #e2e8f0;
-      border-radius: 1rem;
-      padding: 2rem;
-      transition: box-shadow 0.2s, transform 0.2s;
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 0.75rem;
+      padding: 2rem 2rem 2.25rem;
+      transition: border-color 0.2s;
     }
 
     .card:hover {
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.35);
     }
 
     .icon {
-      font-size: 2.4rem;
+      font-size: 2rem;
       line-height: 1;
-      margin-bottom: 1.1rem;
+      margin-bottom: 1.25rem;
     }
 
     h3 {
-      font-size: 1.1rem;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 1.15rem;
       font-weight: 700;
-      color: #0f172a;
-      margin: 0 0 0.65rem;
+      color: #f1f5f9;
+      margin: 0 0 0.75rem;
+      letter-spacing: -0.01em;
     }
 
     p {
-      font-size: 0.95rem;
-      color: #475569;
-      line-height: 1.65;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 1rem;
+      color: #94a3b8;
+      line-height: 1.7;
       margin: 0;
     }
   `;
@@ -123,8 +118,7 @@ export class HighlightsSection extends LitElement {
     return html`
       <section id="highlights">
         <div class="section-header">
-          <span class="section-eyebrow">What I bring</span>
-          <h2>Broad Skills, Deep Expertise</h2>
+          <h2>What I bring</h2>
           <p class="section-sub">
             30 years of building software at scale across industries — always with quality,
             maintainability and delivery speed in mind.
