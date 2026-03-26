@@ -9,37 +9,33 @@ export class ContactSection extends LitElement {
     }
 
     section {
-      background: linear-gradient(135deg, #1a2a4a 0%, #0d1b35 100%);
-      padding: 5rem 2rem;
+      background: #0b1220;
+      padding: 6rem 2rem;
       text-align: center;
-      color: #fff;
+      color: #f1f5f9;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
     }
 
     .inner {
-      max-width: 640px;
+      max-width: 560px;
       margin: 0 auto;
     }
 
-    .eyebrow {
-      display: inline-block;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #7dd3fc;
-      margin-bottom: 1rem;
-    }
-
     h2 {
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: clamp(1.9rem, 4vw, 2.75rem);
       font-weight: 800;
-      margin: 0 0 1rem;
+      margin: 0 0 1.25rem;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: #f8fafc;
     }
 
     p {
-      font-size: 1.05rem;
-      color: #cbd5e1;
-      line-height: 1.65;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 1.1rem;
+      color: #94a3b8;
+      line-height: 1.7;
       margin: 0 0 2.5rem;
     }
 
@@ -50,12 +46,12 @@ export class ContactSection extends LitElement {
       background: #0077b5;
       color: #fff;
       text-decoration: none;
+      font-family: 'Inter', system-ui, sans-serif;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 1.05rem;
       padding: 0.85rem 2.2rem;
       border-radius: 0.5rem;
-      transition: background 0.2s, transform 0.2s;
-      box-shadow: 0 4px 20px rgba(0, 119, 181, 0.45);
+      transition: background 0.15s, transform 0.15s;
     }
 
     .linkedin-btn:hover {
@@ -72,11 +68,10 @@ export class ContactSection extends LitElement {
     return html`
       <section id="contact">
         <div class="inner">
-          <span class="eyebrow">Get in touch</span>
           <h2>Let's work together</h2>
           <p>
-            Looking for an experienced independent consultant to help with your next project?
-            Reach out on LinkedIn and let's start a conversation.
+            Looking for an experienced independent consultant? Reach out on LinkedIn and let's
+            start a conversation.
           </p>
           <a
             href="https://www.linkedin.com/in/aabech?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
