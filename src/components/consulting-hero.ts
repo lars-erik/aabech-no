@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import './ac-logo.js';
 
 @customElement('consulting-hero')
 export class ConsultingHero extends LitElement {
@@ -31,6 +32,13 @@ export class ConsultingHero extends LitElement {
       position: relative;
       max-width: 860px;
       margin: 0 auto;
+    }
+
+    ac-logo {
+      --ac-color: white;
+      --ac-size: 100px;
+      display: block;
+      margin: 0 auto 1.5rem;
     }
 
     .badge {
@@ -153,6 +161,7 @@ export class ConsultingHero extends LitElement {
     return html`
       <section class="hero">
         <div class="hero-inner">
+          <ac-logo animated></ac-logo>
           <div class="badge">Independent Software Consultant</div>
           <h1>Aabech Consulting<br /><span>Delivering Proven Solutions</span></h1>
           <p class="tagline">

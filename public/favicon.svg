@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 220">
+  <rect width="260" height="220" rx="44" fill="#0d1b35"/>
+  <g fill="none" stroke="white" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <!-- A: left leg -->
+    <line x1="48" y1="182" x2="112" y2="22"/>
+    <!-- A/C: shared right spine -->
+    <line x1="112" y1="22" x2="122" y2="182"/>
+    <!-- A: crossbar -->
+    <line x1="77" y1="110" x2="118" y2="110"/>
+    <!-- C: top arm -->
+    <line x1="114" y1="48" x2="195" y2="48"/>
+    <!-- C: bottom arm -->
+    <line x1="120" y1="154" x2="178" y2="154"/>
+  </g>
+  <!-- Terminal dots (evenodd donut rings) -->
+  <path fill="white" fill-rule="evenodd" d="
+    M112,14 A8,8 0 1,1 111.999,14 Z M112,18.5 A3.5,3.5 0 1,0 111.999,18.5 Z
+    M48,174 A8,8 0 1,1 47.999,174 Z M48,178.5 A3.5,3.5 0 1,0 47.999,178.5 Z
+    M122,174 A8,8 0 1,1 121.999,174 Z M122,178.5 A3.5,3.5 0 1,0 121.999,178.5 Z
+    M195,40 A8,8 0 1,1 194.999,40 Z M195,44.5 A3.5,3.5 0 1,0 194.999,44.5 Z
+    M178,146 A8,8 0 1,1 177.999,146 Z M178,150.5 A3.5,3.5 0 1,0 177.999,150.5 Z
+  "/>
+</svg>
