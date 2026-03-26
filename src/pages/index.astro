@@ -13,7 +13,7 @@
       content="Aabech Consulting – Independent software consultant with 30+ years experience across telecom, energy, HR and e-commerce."
     />
     <title>Aabech Consulting</title>
-    <link rel="icon" type="image/svg+xml" href="/aabech-no/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -109,39 +109,9 @@
       /* animated SVG logo in hero */
       .hero-logo {
         display: block;
-        width: 96px;
-        height: 96px;
+        --ac-size: 96px;
         margin: 0 auto 2.5rem;
-        overflow: visible;
       }
-
-      .ac-line {
-        fill: none;
-        stroke: white;
-        stroke-width: 9;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-      .ac-dot {
-        fill: white;
-        fill-rule: evenodd;
-      }
-
-      .line-left-leg   { stroke-dasharray: 171; stroke-dashoffset: 171; animation: ac-draw 0.55s ease-out forwards 0.05s; }
-      .line-spine      { stroke-dasharray: 161; stroke-dashoffset: 161; animation: ac-draw 0.50s ease-out forwards 0.15s; }
-      .line-top-arm    { stroke-dasharray:  82; stroke-dashoffset:  82; animation: ac-draw 0.30s ease-out forwards 0.28s; }
-      .line-crossbar   { stroke-dasharray:  37; stroke-dashoffset:  37; animation: ac-draw 0.20s ease-out forwards 0.55s; }
-      .line-bottom-arm { stroke-dasharray:  57; stroke-dashoffset:  57; animation: ac-draw 0.25s ease-out forwards 0.48s; }
-
-      .ac-dot { opacity: 0; animation: ac-appear 0.2s ease-out forwards; }
-      .dot-apex { animation-delay: 0.72s; }
-      .dot-bl   { animation-delay: 0.62s; }
-      .dot-br   { animation-delay: 0.76s; }
-      .dot-ct   { animation-delay: 0.60s; }
-      .dot-cb   { animation-delay: 0.75s; }
-
-      @keyframes ac-draw   { to { stroke-dashoffset: 0; } }
-      @keyframes ac-appear { to { opacity: 1; } }
 
       .hero h1 {
         font-size: clamp(2.4rem, 6vw, 4rem);
@@ -320,21 +290,7 @@
     <section class="hero" id="top">
       <div class="hero-inner">
 
-        <!-- Inline animated SVG logo — renders without JavaScript -->
-        <svg class="hero-logo" viewBox="0 0 260 220" role="img" aria-label="AC – Aabech Consulting">
-          <title>AC – Aabech Consulting</title>
-          <line class="ac-line line-left-leg"   x1="48"  y1="182" x2="112" y2="22"  />
-          <line class="ac-line line-spine"       x1="112" y1="22"  x2="122" y2="182" />
-          <line class="ac-line line-crossbar"    x1="77"  y1="110" x2="118" y2="110" />
-          <line class="ac-line line-top-arm"     x1="114" y1="48"  x2="195" y2="48"  />
-          <line class="ac-line line-bottom-arm"  x1="120" y1="154" x2="178" y2="154" />
-          <!-- terminal dots (transparent-hole donuts via even-odd fill-rule) -->
-          <path class="ac-dot dot-apex" d="M112,14 A8,8 0 1,1 111.999,14 Z M112,18.5 A3.5,3.5 0 1,0 111.999,18.5 Z" />
-          <path class="ac-dot dot-bl"   d="M48,174 A8,8 0 1,1 47.999,174 Z M48,178.5 A3.5,3.5 0 1,0 47.999,178.5 Z" />
-          <path class="ac-dot dot-br"   d="M122,174 A8,8 0 1,1 121.999,174 Z M122,178.5 A3.5,3.5 0 1,0 121.999,178.5 Z" />
-          <path class="ac-dot dot-ct"   d="M195,40 A8,8 0 1,1 194.999,40 Z M195,44.5 A3.5,3.5 0 1,0 194.999,44.5 Z" />
-          <path class="ac-dot dot-cb"   d="M178,146 A8,8 0 1,1 177.999,146 Z M178,150.5 A3.5,3.5 0 1,0 177.999,150.5 Z" />
-        </svg>
+        <ac-logo class="hero-logo" animated></ac-logo>
 
         <h1>Aabech Consulting</h1>
         <p class="tagline">
