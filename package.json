@@ -1,0 +1,18 @@
+{
+  "name": "aabech-no",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/lit": "^4.3.0",
+    "astro": "^6.0.8",
+    "lit": "^3.3.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}
