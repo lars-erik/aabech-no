@@ -1,17 +1,17 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import rawSvg from '../../public/favicon.svg?raw';
+import rawSvg from '../../public/logo.svg?raw';
 
 // Extract viewBox and path `d` attribute from the favicon SVG at build time.
-// favicon.svg is expected to contain exactly one <path> element.
+// logo.svg is expected to contain exactly one <path> element.
 const viewBoxMatch = rawSvg.match(/viewBox="([^"]+)"/);
 const viewBox = viewBoxMatch?.[1] ?? '0 0 411 362';
 const pathD = rawSvg.match(/\sd="([^"]+)"/)?.[1] ?? '';
 
 /**
- * <ac-logo> – SVG logo sourced from /public/favicon.svg.
+ * <ac-logo> – SVG logo sourced from /public/logo.svg.
  *
- * The path data is imported at build time from favicon.svg so both assets
+ * The path data is imported at build time from logo.svg so both assets
  * always stay in sync.
  *
  * CSS custom properties:
@@ -23,7 +23,8 @@ const pathD = rawSvg.match(/\sd="([^"]+)"/)?.[1] ?? '';
  */
 @customElement('ac-logo')
 export class AcLogo extends LitElement {
-  @property({ type: Boolean, reflect: true }) animated = false;
+  @property({ type: Boolean, reflect: true, attribute: 'animated' }) 
+  animated = false;
 
   static styles = css`
     :host {
@@ -38,7 +39,7 @@ export class AcLogo extends LitElement {
     }
 
     path {
-      fill: var(--ac-color, white);
+      /* fill: var(--ac-color, white); */
       fill-rule: evenodd;
     }
 
@@ -62,7 +63,7 @@ export class AcLogo extends LitElement {
         aria-label="AC – Aabech Consulting"
       >
         <title>AC – Aabech Consulting</title>
-        <path d="${pathD}"></path>
+        <path d="${pathD}" id="ac-logo-path" fill-rule="evenodd" stroke="rgb(255, 255, 255)" stroke-width="19px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"></path>
       </svg>
     `;
   }
